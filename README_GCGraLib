@@ -1,0 +1,115 @@
+*********************************************
+* User's Manual della libreria GCGraLib *
+*********************************************
+La libreria consiste di 2 file:
+GCGraLib.c
+GCGraLib.h
+contenenti rispettivamente il codice sorgente delle
+funzioni messe a disposizione per fare chiamate grafiche
+in ambiente Linux/XWindow  ed SDL e l'header file relativo.
+Il programma utente dovra' includere l'header file
+e linkare il file GCGraLib.o in fase di linking
+
+La libreria GCGraLib permette di fare grafica 2D
+e di gestire graficamente immagini in ambiente SDL.
+
+Segue per ogni funzione l'intestazione ed una breve
+spiegazione dgli argomenti:
+
+void GC_DrawText(SDL_Surface *s, TTF_Font *fonttodraw, char fgR, char fgG, char fgB, char fgA,
+              char bgR, char bgG, char bgB, char bgA, char text[], int x, int y,
+	      enum textquality quality))
+Funzione di disegno di testo;
+Input:
+-(arg.1) puntatore alla struttura finestra in cui si vuole disegnare;
+-(arg.2) puntatore alla fonte da usare;
+-(arg.3-6) quadrupla RGBA del colore per il testo;
+-(arg.7-10) quadrupla RGBA del colore di sfondo del testo;
+-(arg.11) stringa di testo da disegnare;
+-(arg.12-13) posizione (ascissa e ordinata) schermo in cui mettere
+             la stringa (vertice alto sinistro della matrice di pixel);
+-(arg.14) qualita' di rendering della fonte: "solid", "shaded", "blended";
+
+void GC_HorizLine(SDL_Surface *s, int x, int x2, int y, Uint32 color)
+Funzione di disegno di una linea orizzontale
+Input: 
+-(arg.1) puntatore alla struttura finestra in cui si vuole disegnare;
+-(arg.2-3) ascisse degli estremi della linea;
+-(arg.4) ordinata della linea;
+-(arg.5) colore di disegno.
+
+void GC_DrawLine(SDL_Surface *s, int x0, int y0, int x1, int y1, Uint32 color)
+Funzione di disegno di una linea;
+Input:
+-(arg.1) puntatore alla struttura finestra in cui si vuole disegnare;;
+-(arg.2-3) coordinate primo estremo del linea;
+-(arg.4-5) coordinate secondo estremo della linea;
+-(arg.6) colore di disegno.
+
+void GC_DrawRect(SDL_Surface *s,int ax,int ay,int width,int height, Uint32 c)
+Funzione di disegno di un rettangolo 
+Input: 
+-(arg.1) puntatore alla struttura finestra in cui si vuole disegnare;
+-(arg.2-3) coordiante vertice alto sinistro del rettangolo;
+-(arg.4-5) ampiezze del rettangolo;
+-(arg.6) colore di disegno.
+
+void GC_DrawCircle(SDL_Surface *s, int x1, int y1, int ir, Uint32 color)
+Funzione di disegno di una circonferenza;
+Input: 
+-(arg.1) puntatore alla struttura finestra in cui si vuole disegnare;
+-(arg.2-3) coordinate centro della circonferenza;
+-(arg.4) raggio della circonferenza;
+-(arg.5) colore di disegno.
+
+void GC_FillCircle(SDL_Surface *s, int xin, int yin, int rad, Uint32 color)
+Funzione di disegno di un cerchio pieno;
+Input:
+-(arg.1) puntatore alla struttura finestra in cui si vuole disegnare;
+-(arg.2-3) coordinate centro del cerchio;
+-(arg.4) raggio del cerchio;
+-(arg.5) colore di disegno.
+
+Uint32 GC_GetPixel(SDL_Surface *surface, int x, int y)
+Funzione di lettura di un pixel di una finestra grafica
+Input: 
+-(arg.1) puntatore alla struttura finestra a cui si vuole accedere;
+-(arg.2-3) coordiante del pixel che si vuole leggere;
+Output:
+valore di ritorno: colore del pixel.
+
+Uint32 GC_GetPixelImage(SDL_Surface *image, int x, int y)
+Funzione di lettura di un pixel di una immagine
+Input: 
+-(arg.1) puntatore alla struttura immagine a cui si vuole accedere;
+-(arg.2-3) coordiante del pixel che si vuole leggere;
+Output:
+valore di ritorno: colore del pixel.
+
+void GC_PutPixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
+Funzione di scrittura di un pixel di una finestra grafica
+Input: 
+-(arg.1) puntatore alla struttura finestra a cui si vuole accedere;
+-(arg.2-3) coordiante del pixel a cui si vuole accedere;
+-(arg.4) colore che si vuole scrivere.
+
+SDL_Surface* GC_LoadImage(char *file, int *exitstate)
+Funzione per caricare unimmagine in formato PPM, PNG o JPG da file;
+tale immagine verra' memorizzata in una struttura di tipo SDL_Surface allocata
+dalla funzione stessa.
+Input: 
+-(arg.1) puntatore al file immagine da leggere;
+-(arg.2) esito del caricamento (0 fallito, 1 riuscito)
+Output:
+valore di ritorno: puntatore alla struttura SDL_Surface allocata per contenere l'immagine.
+
+void GC_DrawImage(SDL_Surface *srcimg, int sx, int sy, int sw, int sh, SDL_Surface *dstimg,
+               int dx, int dy)
+Funzione di disegno di una immagine
+Input: 
+-(arg.1) puntatore alla struttura immagine che si vuole disegnare;
+-(arg.2-3) coordiante vertice alto sinistro dell'immagine che si vuole disegnare;
+-(arg.4-5) ampiezze del rettangolo immagine che si vuole disegnare;
+-(arg.6) puntatore alla struttura finestra in cui si vuole disegnare;
+-(arg.7-8) coordiante vertice alto sinistro del rettangolo finestra in cui si vuole disegnare;
+
