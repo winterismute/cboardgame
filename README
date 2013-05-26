@@ -1,0 +1,8 @@
+cboardgame
+===================
+
+A version of the Othello boardgame made in C.
+Uses SDL for a rough GUI. Has a minmaxing AI that uses a basic heuristic of Othello (positions close to borders,
+or even corners, of the board are considered more advantageous).
+
+WARNING: this was one of my first C projects!
